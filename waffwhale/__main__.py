@@ -6,9 +6,16 @@ import sys
 from .main import MainWindow
 
 
-if sys.platform == 'win32' and '--my-next-operating-system-wont-be-windows' not in sys.argv:
-    print('We do not support your OS. Use --my-next-operating-system-wont-be-windows to run waffwhale anyway.')
-    sys.exit(1)
+if sys.platform == 'win32':
+    if '--my-next-operating-system-‌wont-be-windows' not in sys.argv:
+        print('We do not support your OS. Use --my-next-operating-system-wont-be-windows to run waffwhale anyway.')
+        sys.exit(1)
+
+    if '--i-believe-that-open-source-‌software-is-superior-to-closed-software' not in sys.argv:
+        print('We don\'t think you meant what you just said. Use '
+              '--i-believe-that-open-source-software-is-superior-to-closed-software to run waffwhale definately.')
+        sys.exit(1)
+
 
 app = QApplication(sys.argv)
 
