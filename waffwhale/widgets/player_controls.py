@@ -12,6 +12,8 @@ class PlayerControls(QWidget):
         self.ui = Ui_PlayerControls()
         self.ui.setupUi(self)
 
+        self.muted = False
+
         size = self.ui.play.geometry().height() / 2
 
         self.empty_cover_icon = QIcon(dirname(__file__) + '/icons/image.svg')
@@ -52,15 +54,20 @@ class PlayerControls(QWidget):
         self.ui.next.setIconSize(QSize(size, size))
 
         # Mute button
-        self.ui.mute.setIcon(QIcon(dirname(__file__) + '/icons/volume-2.svg'))
+        self.volume_muted_icon = QIcon(dirname(__file__) + '/icons/volume-x.svg')
+        self.volume_1_icon = QIcon(dirname(__file__) + '/icons/volume.svg')
+        self.volume_2_icon = QIcon(dirname(__file__) + '/icons/volume-1.svg')
+        self.volume_full_icon = QIcon(dirname(__file__) + '/icons/volume-2.svg')
         self.ui.mute.setIconSize(QSize(size, size))
+        self.ui.mute.clicked.connect(self.toggle_muted)
 
         # Queue button
         self.ui.queue.setIcon(QIcon(dirname(__file__) + '/icons/list.svg'))
         self.ui.queue.setIconSize(QSize(size, size))
 
         # Volume slider
-        # self.ui.volume
+        self.ui.volume.valueChanged.connect(self.update_mute_btn)
+        self.update_mute_btn()
 
     def set_cover_art(self, icon: QIcon = None):
         size = self.ui.cover_art.geometry().height()
@@ -72,3 +79,30 @@ class PlayerControls(QWidget):
             self.ui.cover_art.setIcon(icon)
 
         self.ui.cover_art.setIconSize(QSize(size, size))
+
+    def set_muted(self, mute: bool):
+        self.muted = mute
+        self.update_mute_btn()
+
+    def toggle_muted(self):
+        self.set_muted(not self.muted)
+
+    def get_volume(self):
+        if self.muted:
+            return 0
+
+        # TODO: Add logarithmic scale
+        return self.ui.volume.value()
+
+    def update_mute_btn(self):
+        volume = self.get_volume()
+        icon = self.volume_full_icon
+
+        if volume == 0:
+            icon = self.volume_muted_icon
+        elif volume < 34:
+            icon = self.volume_1_icon
+        elif volume < 67:
+            icon = self.volume_2_icon
+
+        self.ui.mute.setIcon(icon)
