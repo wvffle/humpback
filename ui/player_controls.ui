@@ -85,6 +85,9 @@
           <height>84</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -105,7 +108,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(209, 209, 214);
+         <string notr="true">background-color: rgb(225, 225, 231);
 color: rgb(13, 17, 19);</string>
         </property>
         <property name="frameShape">
@@ -148,7 +151,12 @@ color: rgb(13, 17, 19);</string>
            <property name="font">
             <font>
              <pointsize>16</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-weight: bold;</string>
            </property>
            <property name="text">
             <string>Track Title</string>
@@ -157,6 +165,9 @@ color: rgb(13, 17, 19);</string>
          </item>
          <item>
           <widget class="QFrame" name="frame_4">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
            </property>
@@ -275,6 +286,10 @@ color: rgb(13, 17, 19);</string>
           <height>44</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 240, 246);
+border-style: outset;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -309,6 +324,10 @@ color: rgb(13, 17, 19);</string>
           <width>44</width>
           <height>44</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 240, 246);
+border-style: outset;</string>
         </property>
         <property name="text">
          <string/>
@@ -345,6 +364,10 @@ color: rgb(13, 17, 19);</string>
           <height>44</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 240, 246);
+border-style: outset;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -354,6 +377,9 @@ color: rgb(13, 17, 19);</string>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::MinimumExpanding</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -376,6 +402,10 @@ color: rgb(13, 17, 19);</string>
           <width>44</width>
           <height>44</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 240, 246);
+border-style: outset;</string>
         </property>
         <property name="text">
          <string/>
@@ -412,12 +442,13 @@ color: rgb(13, 17, 19);</string>
           <height>44</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #ffaa00;
+border-style: outset;
+border-radius: 22px;</string>
+        </property>
         <property name="text">
          <string/>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../waffwhale/widgets/icons/play.svg</normaloff>../waffwhale/widgets/icons/play.svg</iconset>
         </property>
        </widget>
       </item>
@@ -451,6 +482,10 @@ color: rgb(13, 17, 19);</string>
           <height>44</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 240, 246);
+border-style: outset;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -460,6 +495,9 @@ color: rgb(13, 17, 19);</string>
        <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::MinimumExpanding</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -482,6 +520,10 @@ color: rgb(13, 17, 19);</string>
           <width>44</width>
           <height>44</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 240, 246);
+border-style: outset;</string>
         </property>
         <property name="text">
          <string/>
@@ -506,8 +548,38 @@ color: rgb(13, 17, 19);</string>
       </item>
       <item>
        <widget class="QSlider" name="volume">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>50</number>
+        </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="invertedAppearance">
+         <bool>false</bool>
+        </property>
+        <property name="invertedControls">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -540,6 +612,10 @@ color: rgb(13, 17, 19);</string>
           <width>44</width>
           <height>44</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 240, 246);
+border-style: outset;</string>
         </property>
         <property name="text">
          <string/>
