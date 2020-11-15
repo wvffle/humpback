@@ -23,7 +23,7 @@ if sys.platform == 'win32':
     print('If you feel adventurous, you can try ArchLinux (https://www.archlinux.org/) itself.')
     print('')
     print(f'There is no flag to run the program on your OS. If you really want to do so, comment out line '
-          f'{currentframe().f_lineno + 1} from file {__file__}')
+          f'{currentframe().f_lineno + 2} from file {__file__}')
     print('waffwhale is not developed with your OS in mind. The bugs may appear.')
     sys.exit(1)
 
