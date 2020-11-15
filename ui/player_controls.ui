@@ -246,6 +246,22 @@ color: rgb(13, 17, 19);</string>
        </widget>
       </item>
       <item>
+       <spacer name="horizontalSpacer_11">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>10</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QPushButton" name="fav">
         <property name="minimumSize">
          <size>
@@ -398,6 +414,10 @@ color: rgb(13, 17, 19);</string>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../waffwhale/widgets/icons/play.svg</normaloff>../waffwhale/widgets/icons/play.svg</iconset>
         </property>
        </widget>
       </item>
