@@ -11,14 +11,48 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(859, 524)
+class Ui_Sidebar(object):
+    def setupUi(self, Sidebar):
+        Sidebar.setObjectName("Sidebar")
+        Sidebar.resize(320, 382)
+        Sidebar.setMinimumSize(QtCore.QSize(320, 0))
+        Sidebar.setMaximumSize(QtCore.QSize(320, 16777215))
+        Sidebar.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.verticalLayout = QtWidgets.QVBoxLayout(Sidebar)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.frame = QtWidgets.QFrame(Sidebar)
+        self.frame.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setContentsMargins(3, 3, 3, 3)
+        self.horizontalLayout_2.setSpacing(6)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setMinimumSize(QtCore.QSize(42, 42))
+        self.pushButton.setMaximumSize(QtCore.QSize(42, 42))
+        self.pushButton.setText("")
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_2.addWidget(self.pushButton)
+        self.label = QtWidgets.QLabel(self.frame)
+        self.label.setMaximumSize(QtCore.QSize(16777215, 48))
+        self.label.setObjectName("label")
+        self.horizontalLayout_2.addWidget(self.label)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem)
+        self.verticalLayout.addWidget(self.frame)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(Sidebar)
+        QtCore.QMetaObject.connectSlotsByName(Sidebar)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, Sidebar):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Sidebar.setWindowTitle(_translate("Sidebar", "Form"))
+        self.label.setText(_translate("Sidebar", "TextLabel"))

@@ -1,11 +1,12 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QSpacerItem, QSizePolicy
+from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSpacerItem, QSizePolicy
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot, QThread, Qt, QSize
 from urllib.request import urlopen
 
-from .widgets.player_controls import PlayerControls
+from .widgets import Sidebar, PlayerControls
 
 
+# https://stackoverflow.com/a/59537535/5565538
 class CoverDownloader(QObject):
     resultsChanged = pyqtSignal(bytes)
 
@@ -32,8 +33,13 @@ class MainWindow(QMainWindow):
         self.mainLayout.setSpacing(0)
 
         self.controls = PlayerControls()
+        self.sidebar = Sidebar()
 
-        self.mainLayout.addItem(QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
+        self.contentLayout = QHBoxLayout()
+        self.contentLayout.addWidget(self.sidebar)
+        self.contentLayout.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+
+        self.mainLayout.addLayout(self.contentLayout)
         self.mainLayout.addWidget(self.controls)
 
         self.centralWidget = QWidget(self)
