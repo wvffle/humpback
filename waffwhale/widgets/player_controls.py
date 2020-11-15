@@ -14,6 +14,9 @@ class PlayerControls(QWidget):
 
         size = self.ui.play.geometry().height() / 2
 
+        self.empty_cover_icon = QIcon(dirname(__file__) + '/icons/image.svg')
+        self.set_cover_art()
+
         # Play/Pause button
         self.play_icon = QIcon(dirname(__file__) + '/icons/play.svg')
         self.pause_icon = QIcon(dirname(__file__) + '/icons/pause.svg')
@@ -58,3 +61,14 @@ class PlayerControls(QWidget):
 
         # Volume slider
         # self.ui.volume
+
+    def set_cover_art(self, icon: QIcon = None):
+        size = self.ui.cover_art.geometry().height()
+
+        if icon is None:
+            self.ui.cover_art.setIcon(self.empty_cover_icon)
+            size /= 2
+        else:
+            self.ui.cover_art.setIcon(icon)
+
+        self.ui.cover_art.setIconSize(QSize(size, size))

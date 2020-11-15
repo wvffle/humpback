@@ -51,12 +51,9 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap()
         pixmap.loadFromData(img)
 
-        geometry = self.controls.ui.cover_art.geometry()
-        size = geometry.height()
-
+        size = self.controls.ui.cover_art.geometry().height()
         icon = QIcon(pixmap.scaled(size, size, Qt.KeepAspectRatio, Qt.SmoothTransformation))
-        self.controls.ui.cover_art.setIcon(icon)
-        self.controls.ui.cover_art.setIconSize(QSize(size, size))
+        self.controls.set_cover_art(icon)
 
     def closeEvent(self, event):
         self.downloader_thread.quit()
