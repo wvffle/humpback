@@ -16,12 +16,14 @@ class TrackSlider(QSlider):
             QSlider::add-page {
                 margin-top: -4px;
                 margin-bottom: 4px;
+                border-radius: 0;
             }
             
             QSlider::sub-page {
                 background-color: #ffaa00;
                 margin-top: -4px;
                 margin-bottom: 4px;
+                border-radius: 0;
             }
         """)
 

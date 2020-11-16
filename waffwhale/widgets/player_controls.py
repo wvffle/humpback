@@ -13,6 +13,7 @@ class PlayerControls(QWidget):
         self.ui = Ui_PlayerControls()
         self.ui.setupUi(self)
 
+        self.playing = True
         self.muted = False
 
         # Song slider
@@ -31,8 +32,9 @@ class PlayerControls(QWidget):
         self.play_icon = QIcon(dirname(__file__) + '/icons/play.svg')
         self.pause_icon = QIcon(dirname(__file__) + '/icons/pause.svg')
 
-        self.ui.play.setIcon(self.play_icon)
         self.ui.play.setIconSize(QSize(size, size))
+        self.ui.play.clicked.connect(self.toggle_play)
+        self.toggle_play()
 
         self.play_shadow = QGraphicsDropShadowEffect()
         self.play_shadow.setYOffset(10)
@@ -46,7 +48,7 @@ class PlayerControls(QWidget):
         self.ui.fav.setIconSize(QSize(size, size))
 
         # Add to playlist button
-        self.ui.playlist.setIcon(QIcon(dirname(__file__) + '/icons/folder-plus.svg'))
+        self.ui.playlist.setIcon(QIcon(dirname(__file__) + '/icons/list.svg'))
         self.ui.playlist.setIconSize(QSize(size, size))
 
         # Hide this artist button
@@ -70,7 +72,7 @@ class PlayerControls(QWidget):
         self.ui.mute.clicked.connect(self.toggle_muted)
 
         # Queue button
-        self.ui.queue.setIcon(QIcon(dirname(__file__) + '/icons/list.svg'))
+        self.ui.queue.setIcon(QIcon(dirname(__file__) + '/icons/menu.svg'))
         self.ui.queue.setIconSize(QSize(size, size))
 
         # Volume slider
@@ -114,3 +116,11 @@ class PlayerControls(QWidget):
             icon = self.volume_2_icon
 
         self.ui.mute.setIcon(icon)
+
+    def toggle_play(self):
+        self.playing = not self.playing
+
+        if self.playing:
+            self.ui.play.setIcon(self.pause_icon)
+        else:
+            self.ui.play.setIcon(self.play_icon)
