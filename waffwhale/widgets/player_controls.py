@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QWidget, QGraphicsDropShadowEffect
+from PySide2.QtWidgets import QWidget, QGraphicsDropShadowEffect, QVBoxLayout
 from PySide2.QtGui import QIcon, QColor
 from PySide2.QtCore import QSize, Qt
 from os.path import dirname
@@ -17,7 +17,10 @@ class PlayerControls(QWidget):
 
         # Song slider
         self.track_slider = TrackSlider()
-        self.ui.gridLayout.addWidget(self.track_slider, 0, 0, Qt.AlignTop)
+        tracklayout = QVBoxLayout()
+        tracklayout.addWidget(self.track_slider)
+        tracklayout.setMargin(-10)
+        self.ui.gridLayout.addLayout(tracklayout, 0, 0, Qt.AlignTop)
 
         size = self.ui.play.geometry().height() / 2
 
