@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PySide2.QtWidgets import QWidget
 from ..ui.sidebar import Ui_Sidebar
 
 

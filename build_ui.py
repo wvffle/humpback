@@ -1,43 +1,28 @@
-import time
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
-from PyQt5 import uic
+import inotify.adapters
+import subprocess
+from glob import glob
+from os.path import dirname, basename
+
+i = inotify.adapters.Inotify()
+i.add_watch('ui')
 
 
-class OnUiWatch:
-    watchDirectory = "./ui"
-
-    def __init__(self):
-        self.observer = Observer()
-
-    def run(self):
-        event_handler = Handler()
-        self.observer.schedule(event_handler, self.watchDirectory, recursive=True)
-        self.observer.start()
-        try:
-            while True:
-                time.sleep(5)
-        except:
-            self.observer.stop()
-            print("Observer Stopped")
-
-        self.observer.join()
+def compile(path, filename):
+    subprocess.call([
+        'pyside2-uic',
+        f'{path}/{filename}',
+        '-o',
+        f'waffwhale/{path}/{filename[:-3]}.py'
+    ])
 
 
-class Handler(FileSystemEventHandler):
+for file in glob('ui/*.ui'):
+    compile(dirname(file), basename(file))
 
-    @staticmethod
-    def on_any_event(event, **kwargs):
-        if event.is_directory:
-            return None
+for event in i.event_gen(yield_nones=False):
+    (_, type_names, path, filename) = event
 
-        if event.event_type == 'created' or event.event_type == 'modified':
-            uic.compileUiDir('./ui', map=lambda src, name: ('./waffwhale/ui', name))
-            print('Ui files regenerated')
-
-
-if __name__ == '__main__':
-    watch = OnUiWatch()
-    uic.compileUiDir('./ui', map=lambda src, name: ('./waffwhale/ui', name))
-    print('Ui files generated')
-    watch.run()
+    if filename[-3:] == '.ui':
+        if 'IN_CLOSE_WRITE' in type_names or 'IN_MOVED_TO' in type_names:
+            compile(path, filename)
+            print(f'Generated {filename[:-3]}.py by {type_names}')

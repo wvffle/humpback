@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSpacerItem, QSizePolicy
-from PyQt5.QtGui import QPixmap, QIcon
-from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot, QThread, Qt, QSize
+from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSpacerItem, QSizePolicy
+from PySide2.QtGui import QPixmap, QIcon
+from PySide2.QtCore import QObject, Signal, Slot, QThread, Qt, QSize
 from urllib.request import urlopen
 
 from .widgets import Sidebar, PlayerControls
@@ -8,9 +8,9 @@ from .widgets import Sidebar, PlayerControls
 
 # https://stackoverflow.com/a/59537535/5565538
 class CoverDownloader(QObject):
-    resultsChanged = pyqtSignal(bytes)
+    resultsChanged = Signal(bytes)
 
-    @pyqtSlot(str)
+    @Slot(str)
     def download(self, url):
         img = urlopen(url).read()
         self.resultsChanged.emit(img)
@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         self.centralWidget.setLayout(self.mainLayout)
         self.setCentralWidget(self.centralWidget)
 
-    @pyqtSlot(bytes)
+    @Slot(bytes)
     def on_download(self, img):
         pixmap = QPixmap()
         pixmap.loadFromData(img)

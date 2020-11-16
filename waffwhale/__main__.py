@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QFile, QIODevice, QTextStream
+from PySide2.QtWidgets import QApplication
+from PySide2.QtCore import QFile, QIODevice, QTextStream
 from os.path import dirname
 from inspect import currentframe
 import sys
