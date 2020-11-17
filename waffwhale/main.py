@@ -1,9 +1,9 @@
-from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedLayout, QFrame
-from PySide2.QtGui import QPixmap, QIcon
+from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedLayout
+from PySide2.QtGui import QPixmap, QIcon, QPalette
 from PySide2.QtCore import QObject, Signal, Slot, QThread, Qt
 from urllib.request import urlopen
 
-from .widgets import Sidebar, PlayerControls
+from .widgets import Sidebar, PlayerControls, Browse
 
 
 # https://stackoverflow.com/a/59537535/5565538
@@ -37,13 +37,22 @@ class MainWindow(QMainWindow):
 
         self.contentLayout = QHBoxLayout()
         self.contentLayout.addWidget(self.sidebar)
-        # self.contentLayout.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
-        self.pages = QStackedLayout()
-        self.contentLayout.addLayout(self.pages)
 
-        a = QFrame()
-        a.setStyleSheet("background-color: #fff")
-        self.pages.insertWidget(0, a)
+        self.pagesView = QStackedLayout()
+        self.contentLayout.addLayout(self.pagesView)
+
+        # All pages
+        self.pages = {
+            'exp_browse': Browse()
+        }
+
+        page_palette = QPalette()
+        page_palette.setColor(QPalette.Background, Qt.white)
+        for page in self.pages.values():
+            page.ui.frame.setPalette(page_palette)
+            page.ui.frame.setAutoFillBackground(True)
+
+        self.pagesView.insertWidget(0, self.pages.get('exp_browse'))
 
         self.mainLayout.addLayout(self.contentLayout)
         self.mainLayout.addWidget(self.controls)
