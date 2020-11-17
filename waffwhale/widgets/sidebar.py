@@ -1,5 +1,5 @@
-from PySide2.QtWidgets import QWidget
-from PySide2.QtGui import QIcon
+from PySide2.QtWidgets import QWidget, QGraphicsDropShadowEffect
+from PySide2.QtGui import QIcon, QColor
 from PySide2.QtCore import QSize
 from os.path import dirname
 from ..ui.sidebar import Ui_Sidebar
@@ -11,6 +11,13 @@ class Sidebar(QWidget):
 
         self.ui = Ui_Sidebar()
         self.ui.setupUi(self)
+
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setXOffset(10)
+        shadow.setYOffset(0)
+        shadow.setColor(QColor(0xff, 0xaa, 0x00, 0x4c))
+        shadow.setBlurRadius(15)
+        self.ui.frame.setGraphicsEffect(shadow)
 
         size = self.ui.exp_albums.geometry().height() / 2
 

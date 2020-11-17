@@ -1,6 +1,6 @@
-from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSpacerItem, QSizePolicy
+from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedLayout, QFrame
 from PySide2.QtGui import QPixmap, QIcon
-from PySide2.QtCore import QObject, Signal, Slot, QThread, Qt, QSize
+from PySide2.QtCore import QObject, Signal, Slot, QThread, Qt
 from urllib.request import urlopen
 
 from .widgets import Sidebar, PlayerControls
@@ -37,7 +37,13 @@ class MainWindow(QMainWindow):
 
         self.contentLayout = QHBoxLayout()
         self.contentLayout.addWidget(self.sidebar)
-        self.contentLayout.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        # self.contentLayout.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        self.pages = QStackedLayout()
+        self.contentLayout.addLayout(self.pages)
+
+        a = QFrame()
+        a.setStyleSheet("background-color: #fff")
+        self.pages.insertWidget(0, a)
 
         self.mainLayout.addLayout(self.contentLayout)
         self.mainLayout.addWidget(self.controls)

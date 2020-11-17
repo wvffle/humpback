@@ -17,21 +17,26 @@ class Ui_Sidebar(object):
     def setupUi(self, Sidebar):
         if not Sidebar.objectName():
             Sidebar.setObjectName(u"Sidebar")
-        Sidebar.resize(320, 801)
+        Sidebar.resize(320, 720)
         Sidebar.setMinimumSize(QSize(320, 0))
         Sidebar.setMaximumSize(QSize(320, 16777215))
-        Sidebar.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.verticalLayout = QVBoxLayout(Sidebar)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        Sidebar.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"background-color: rgb(255, 255, 255);")
+        self.horizontalLayout_5 = QHBoxLayout(Sidebar)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.frame = QFrame(Sidebar)
         self.frame.setObjectName(u"frame")
+        self.frame.setEnabled(True)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
         self.frame.setSizePolicy(sizePolicy)
+        self.frame.setMinimumSize(QSize(0, 0))
+        self.frame.setMaximumSize(QSize(16777215, 16777215))
+        self.frame.setStyleSheet(u"background-color: rgb(225, 225, 231);")
         self.frame.setFrameShape(QFrame.NoFrame)
         self.frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.frame)
@@ -87,10 +92,13 @@ class Ui_Sidebar(object):
 
         self.scrollArea = QScrollArea(self.frame)
         self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setStyleSheet(u"background-color: #fff;")
+        self.scrollArea.setFrameShape(QFrame.NoFrame)
+        self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 314, 747))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 308, 672))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
@@ -295,7 +303,7 @@ class Ui_Sidebar(object):
         self.verticalLayout_2.addWidget(self.scrollArea)
 
 
-        self.verticalLayout.addWidget(self.frame)
+        self.horizontalLayout_5.addWidget(self.frame)
 
 
         self.retranslateUi(Sidebar)

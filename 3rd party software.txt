@@ -1,2 +1,3 @@
 feather icons
 Qt
+PySide2

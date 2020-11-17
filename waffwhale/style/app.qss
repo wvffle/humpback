@@ -26,6 +26,7 @@ QSlider::add-page {
 	border-radius: 3px;
 }
 
+/* TODO: https://stackoverflow.com/questions/64869487/how-to-style-qscrollbar-when-its-disabled */
 QScrollBar::handle {
 	background-color: #ffaa00;
 	width: 15px;
