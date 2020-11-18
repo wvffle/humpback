@@ -40,6 +40,7 @@ app.setStyleSheet(QTextStream(stream).readAll())
 
 login_token = settings.value('login_token')
 window = MainWindow(settings)
+print(settings.fileName())
 
 
 @Slot()
