@@ -4,7 +4,7 @@ from os.path import dirname
 from inspect import currentframe
 import sys
 
-from .main import MainWindow
+from waffwhale.widgets.main import MainWindow
 from .widgets import LoginDialog
 
 

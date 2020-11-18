@@ -1,9 +1,11 @@
 from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedLayout
 from PySide2.QtGui import QPixmap, QIcon, QPalette
-from PySide2.QtCore import QObject, Signal, Slot, QThread, Qt
-from urllib.request import urlopen
+from PySide2.QtCore import QObject, Signal, Slot, QThread, Qt, QSettings
+from PySide2.QtNetwork import QNetworkRequest
+from urllib.request import urlopen, Request
 
-from .widgets import Sidebar, PlayerControls, Browse
+from waffwhale.widgets import Sidebar, PlayerControls, Browse
+from ..api import API
 
 
 # https://stackoverflow.com/a/59537535/5565538
@@ -17,9 +19,10 @@ class CoverDownloader(QObject):
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, settings):
+    def __init__(self, settings: QSettings):
         super().__init__()
         self.settings = settings
+        self.api = API(settings)
 
         self.setWindowTitle('waffwhale')
 
