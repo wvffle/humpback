@@ -17,8 +17,10 @@ class CoverDownloader(QObject):
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, parent=None):
-        super(MainWindow, self).__init__(parent)
+    def __init__(self, settings):
+        super().__init__()
+        self.settings = settings
+
         self.setWindowTitle('waffwhale')
 
         self.downloader_thread = QThread(self)

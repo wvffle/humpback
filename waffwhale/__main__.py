@@ -1,10 +1,11 @@
 from PySide2.QtWidgets import QApplication
-from PySide2.QtCore import QFile, QIODevice, QTextStream
+from PySide2.QtCore import QFile, QIODevice, QTextStream, QSettings, Slot
 from os.path import dirname
 from inspect import currentframe
 import sys
 
 from .main import MainWindow
+from .widgets import LoginDialog
 
 
 if sys.platform == 'win32':
@@ -29,13 +30,30 @@ if sys.platform == 'win32':
 
 
 app = QApplication(sys.argv)
+settings = QSettings('wvffle', 'waffwhale')
+
 
 # Load QSS
 stream = QFile(dirname(__file__) + '/style/app.qss')
 stream.open(QIODevice.ReadOnly)
 app.setStyleSheet(QTextStream(stream).readAll())
 
-window = MainWindow()
+login_token = settings.value('login_token')
+window = MainWindow(settings)
 
-window.show()
+
+@Slot()
+def log_in():
+    if login_token is None:
+        login_box.close()
+    window.show()
+
+
+if login_token is None:
+    login_box = LoginDialog(settings)
+    login_box.logged_in.connect(log_in)
+    login_box.show()
+else:
+    log_in()
+
 sys.exit(app.exec_())

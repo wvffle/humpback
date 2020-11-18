@@ -4,7 +4,7 @@ from ..ui.browse import Ui_Browse
 
 class Browse(QWidget):
     def __init__(self):
-        super(Browse, self).__init__()
+        super().__init__()
 
         self.ui = Ui_Browse()
         self.ui.setupUi(self)

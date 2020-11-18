@@ -8,7 +8,7 @@ from .track_slider import TrackSlider
 
 class PlayerControls(QWidget):
     def __init__(self):
-        super(PlayerControls, self).__init__()
+        super().__init__()
 
         self.ui = Ui_PlayerControls()
         self.ui.setupUi(self)
