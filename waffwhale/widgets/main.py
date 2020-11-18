@@ -4,7 +4,7 @@ from PySide2.QtCore import QObject, Signal, Slot, QThread, Qt, QSettings
 from PySide2.QtNetwork import QNetworkRequest
 from urllib.request import urlopen, Request
 
-from waffwhale.widgets import Sidebar, PlayerControls, Browse
+from waffwhale.widgets import Sidebar, PlayerControls, Browse, HistoryEntry
 from ..api import API
 
 
@@ -23,6 +23,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.settings = settings
         self.api = API(settings)
+        self.api.history.all().connect(self.on_history)
 
         self.setWindowTitle('waffwhale')
 
@@ -74,6 +75,12 @@ class MainWindow(QMainWindow):
         size = self.controls.ui.cover_art.geometry().height()
         icon = QIcon(pixmap.scaled(size, size, Qt.KeepAspectRatio, Qt.SmoothTransformation))
         self.controls.set_cover_art(icon)
+
+    @Slot(dict)
+    def on_history(self, history):
+        for entry in history['results']:
+            history_entry = HistoryEntry(entry, self.api)
+            self.pages.get('exp_browse').ui.history.addWidget(history_entry)
 
     def closeEvent(self, event):
         self.downloader_thread.quit()

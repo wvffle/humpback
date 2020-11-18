@@ -29,6 +29,7 @@ QSlider::add-page {
 QScrollBar::handle {
 	background-color: #ffaa00;
 	width: 15px;
+	min-height: 14px;
 	border-radius: 7px;
 }
 

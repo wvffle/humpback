@@ -1,5 +1,6 @@
-from PySide2.QtCore import QSettings, QUrl, QUrlQuery, QByteArray, Signal, Slot, QObject
+from PySide2.QtCore import QSettings, QUrl, QUrlQuery, QByteArray, Signal, Slot, QObject, Qt
 from PySide2.QtNetwork import QNetworkAccessManager, QNetworkRequest
+from PySide2.QtGui import QPixmap
 from munch import munchify
 import json
 
@@ -21,6 +22,26 @@ class ReplyParser(QObject):
         return parse
 
 
+class CoverFetcher(QObject):
+    fetched = Signal(QPixmap)
+
+    def __init__(self, reply, size):
+        super().__init__()
+        self.reply = reply
+        self.size = size
+        reply.finished.connect(self.fetch())
+
+    @Slot()
+    def fetch(self):
+        # TODO: Add caching
+        def do():
+            pixmap = QPixmap()
+            pixmap.loadFromData(self.reply.readAll())
+            pixmap.scaled(self.size, self.size, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            self.fetched.emit(pixmap)
+        return do
+
+
 class API:
     manager = QNetworkAccessManager()
 
@@ -34,23 +55,23 @@ class API:
             },
             'artists': {
                 'all': lambda: self.__get('/artists'),
-                'get': lambda idx: self.__get(f'/artists/{idx}'),
+                'cover': lambda idx: self.__get(f'/artists/{idx}'),
                 'libraries': lambda idx: self.__get(f'/artists/{idx}/libraries')
             },
             'albums': {
                 'all': lambda: self.__get('/albums'),
-                'get': lambda idx: self.__get(f'/albums/{idx}'),
+                'cover': lambda idx: self.__get(f'/albums/{idx}'),
                 'libraries': lambda idx: self.__get(f'/albums/{idx}/libraries')
             },
             'tracks': {
                 'all': lambda: self.__get('/tracks'),
-                'get': lambda idx: self.__get(f'/tracks/{idx}'),
+                'cover': lambda idx: self.__get(f'/tracks/{idx}'),
                 'libraries': lambda idx: self.__get(f'/tracks/{idx}/libraries')
             },
             'listen': lambda uuid: self.__get(f'/listen/{uuid}'),
             'licenses': {
                 'all': lambda: self.__get('/licenses'),
-                'get': lambda code: self.__get(f'/licenses/{code}')
+                'cover': lambda code: self.__get(f'/licenses/{code}')
             },
             'libraries': {},
             'uploads': {},
@@ -91,3 +112,8 @@ class API:
 
         req.setHeader(QNetworkRequest.ContentTypeHeader, 'application/x-www-form-urlencoded')
         return self.__parse(self.manager.post(req, query.toString(QUrl.FullyEncoded)))
+
+    def cover(self, url, size):
+        request = QNetworkRequest(QUrl(url))
+        return CoverFetcher(self.manager.get(request), size).fetched
+

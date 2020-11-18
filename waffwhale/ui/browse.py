@@ -49,19 +49,40 @@ class Ui_Browse(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.verticalLayout_6 = QVBoxLayout()
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.asd = QVBoxLayout()
+        self.asd.setObjectName(u"asd")
         self.label_5 = QLabel(self.frame_2)
         self.label_5.setObjectName(u"label_5")
 
-        self.verticalLayout_6.addWidget(self.label_5)
+        self.asd.addWidget(self.label_5)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.scrollArea = QScrollArea(self.frame_2)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setStyleSheet(u"background-color: transparent;")
+        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 543, 230))
+        self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.history = QVBoxLayout()
+        self.history.setObjectName(u"history")
 
-        self.verticalLayout_6.addItem(self.verticalSpacer_4)
+        self.verticalLayout_2.addLayout(self.history)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 225, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer_4)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.asd.addWidget(self.scrollArea)
 
 
-        self.horizontalLayout_2.addLayout(self.verticalLayout_6)
+        self.horizontalLayout_2.addLayout(self.asd)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 

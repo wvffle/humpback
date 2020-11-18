@@ -17,7 +17,7 @@ class Ui_Sidebar(object):
     def setupUi(self, Sidebar):
         if not Sidebar.objectName():
             Sidebar.setObjectName(u"Sidebar")
-        Sidebar.resize(320, 720)
+        Sidebar.resize(320, 740)
         Sidebar.setMinimumSize(QSize(320, 0))
         Sidebar.setMaximumSize(QSize(320, 16777215))
         Sidebar.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
@@ -98,7 +98,7 @@ class Ui_Sidebar(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 308, 672))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 308, 692))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
