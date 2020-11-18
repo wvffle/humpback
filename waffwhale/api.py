@@ -18,7 +18,6 @@ class ReplyParser(QObject):
         def parse():
             data = literal_eval(str(self.reply.readAll()))
             self.parsed.emit(json.loads(data))
-
         return parse
 
 
@@ -92,6 +91,3 @@ class API:
 
         req.setHeader(QNetworkRequest.ContentTypeHeader, 'application/x-www-form-urlencoded')
         return self.__parse(self.manager.post(req, query.toString(QUrl.FullyEncoded)))
-
-    def tracks(self):
-        return self.__get('/tracks')
