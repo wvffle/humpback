@@ -1,5 +1,6 @@
 from PySide2.QtWidgets import QApplication
-from PySide2.QtCore import QFile, QIODevice, QTextStream, QSettings, Slot
+from PySide2.QtCore import QFile, QIODevice, QTextStream, QSettings, Slot, QUrl
+from PySide2.QtMultimedia import QMediaPlayer
 from os.path import dirname
 from inspect import currentframe
 import sys
@@ -40,7 +41,6 @@ app.setStyleSheet(QTextStream(stream).readAll())
 
 login_token = settings.value('login_token')
 window = MainWindow(settings)
-print(settings.fileName())
 
 
 @Slot()

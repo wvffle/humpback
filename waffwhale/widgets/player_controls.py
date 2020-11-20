@@ -1,14 +1,17 @@
 from PySide2.QtWidgets import QWidget, QGraphicsDropShadowEffect, QVBoxLayout
 from PySide2.QtGui import QIcon, QColor
 from PySide2.QtCore import QSize, Qt
+from PySide2.QtMultimedia import QMediaPlayer
 from os.path import dirname
 from ..ui.player_controls import Ui_PlayerControls
 from .track_slider import TrackSlider
 
 
 class PlayerControls(QWidget):
-    def __init__(self):
+    def __init__(self, player: QMediaPlayer):
         super().__init__()
+
+        self.player = player
 
         self.ui = Ui_PlayerControls()
         self.ui.setupUi(self)
@@ -22,6 +25,8 @@ class PlayerControls(QWidget):
         tracklayout.addWidget(self.track_slider)
         tracklayout.setMargin(-10)
         self.ui.gridLayout.addLayout(tracklayout, 0, 0, Qt.AlignTop)
+
+        self.track_slider.setRange(0, self.player.duration())
 
         size = self.ui.play.geometry().height() / 2
 
@@ -92,6 +97,7 @@ class PlayerControls(QWidget):
 
     def set_muted(self, mute: bool):
         self.muted = mute
+        self.player.setMuted(mute)
         self.update_mute_btn()
 
     def toggle_muted(self):
@@ -101,12 +107,13 @@ class PlayerControls(QWidget):
         if self.muted:
             return 0
 
-        # TODO: Add logarithmic scale
         return self.ui.volume.value()
 
     def update_mute_btn(self):
         volume = self.get_volume()
         icon = self.volume_full_icon
+
+        self.player.setVolume(volume)
 
         if volume == 0:
             icon = self.volume_muted_icon
@@ -122,5 +129,7 @@ class PlayerControls(QWidget):
 
         if self.playing:
             self.ui.play.setIcon(self.pause_icon)
+            self.player.play()
         else:
+            self.player.pause()
             self.ui.play.setIcon(self.play_icon)

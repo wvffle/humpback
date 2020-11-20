@@ -1,8 +1,9 @@
 from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedLayout
 from PySide2.QtGui import QPalette
-from PySide2.QtCore import Slot, Qt, QSettings
+from PySide2.QtCore import Qt, QSettings
+from PySide2.QtMultimedia import QMediaPlayer
 
-from waffwhale.widgets import Sidebar, PlayerControls, Browse, HistoryEntry
+from waffwhale.widgets import Sidebar, PlayerControls, Browse
 from ..api import API
 
 
@@ -11,7 +12,9 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.settings = settings
         self.api = API(settings)
-        self.api.history.all().connect(self.on_history)
+
+        self.player = QMediaPlayer()
+        # self.player.setMedia(self.api.listen('<UUID>'))
 
         self.setWindowTitle('waffwhale')
 
@@ -19,7 +22,7 @@ class MainWindow(QMainWindow):
         self.mainLayout.setContentsMargins(0, 0, 0, 0)
         self.mainLayout.setSpacing(0)
 
-        self.controls = PlayerControls()
+        self.controls = PlayerControls(self.player)
         self.sidebar = Sidebar()
 
         self.contentLayout = QHBoxLayout()
@@ -30,7 +33,7 @@ class MainWindow(QMainWindow):
 
         # All pages
         self.pages = {
-            'exp_browse': Browse()
+            'exp_browse': Browse(self.api)
         }
 
         page_palette = QPalette()
@@ -48,8 +51,3 @@ class MainWindow(QMainWindow):
         self.centralWidget.setLayout(self.mainLayout)
         self.setCentralWidget(self.centralWidget)
 
-    @Slot(dict)
-    def on_history(self, history):
-        for entry in history['results']:
-            history_entry = HistoryEntry(entry, self.api)
-            self.pages.get('exp_browse').ui.history.addWidget(history_entry)

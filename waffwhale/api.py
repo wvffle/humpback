@@ -68,7 +68,7 @@ class API:
                 'cover': lambda idx: self.__get(f'/tracks/{idx}'),
                 'libraries': lambda idx: self.__get(f'/tracks/{idx}/libraries')
             },
-            'listen': lambda uuid: self.__get(f'/listen/{uuid}'),
+            'listen': lambda track_id: self.__request(f'/listen/{track_id}'),
             'licenses': {
                 'all': lambda: self.__get('/licenses'),
                 'cover': lambda code: self.__get(f'/licenses/{code}')
@@ -77,11 +77,16 @@ class API:
             'uploads': {},
             'channels': {},
             'subscriptions': {},
-            'favourites': {},
+            'favourites': {
+                'all': lambda: self.__get('/favorites/tracks?scope=all'),
+                'me': lambda: self.__get('/favorites/tracks?scope=me'),
+                'add': lambda track_id: self.__post('/favorites/tracks', {'track': track_id}),
+                'remove': lambda track_id: self.__post('/favorites/tracks/remove', {'track': track_id}),
+            },
             'playlists': {},
             'history': {
                 'all': lambda: self.__get('/history/listenings'),
-                'add': lambda track_id: self.__post('/history/listenings', {'track': track_id})
+                'add': lambda track_id: self.__post('/history/listenings', {'track': track_id}),
             },
         }
 

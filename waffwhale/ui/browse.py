@@ -17,7 +17,7 @@ class Ui_Browse(object):
     def setupUi(self, Browse):
         if not Browse.objectName():
             Browse.setObjectName(u"Browse")
-        Browse.resize(854, 602)
+        Browse.resize(842, 602)
         Browse.setAutoFillBackground(True)
         Browse.setStyleSheet(u"")
         self.verticalLayout_5 = QVBoxLayout(Browse)
@@ -63,7 +63,7 @@ class Ui_Browse(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 543, 230))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 318, 230))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -95,9 +95,30 @@ class Ui_Browse(object):
 
         self.verticalLayout_7.addWidget(self.label_6)
 
-        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.scrollArea_2 = QScrollArea(self.frame_2)
+        self.scrollArea_2.setObjectName(u"scrollArea_2")
+        self.scrollArea_2.setStyleSheet(u"background-color: transparent;")
+        self.scrollArea_2.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scrollArea_2.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_3 = QWidget()
+        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 317, 230))
+        self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_3)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.favourites = QVBoxLayout()
+        self.favourites.setObjectName(u"favourites")
 
-        self.verticalLayout_7.addItem(self.verticalSpacer_6)
+        self.verticalLayout_4.addLayout(self.favourites)
+
+        self.verticalSpacer_6 = QSpacerItem(20, 225, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_4.addItem(self.verticalSpacer_6)
+
+        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_3)
+
+        self.verticalLayout_7.addWidget(self.scrollArea_2)
 
 
         self.horizontalLayout_2.addLayout(self.verticalLayout_7)
