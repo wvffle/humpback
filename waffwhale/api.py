@@ -51,51 +51,58 @@ class API:
 
         api = {
             'users': {
-                'me': lambda: self.__get('/users/me'),
+                'me': APIEntry(lambda params: self.__get('/users/me', params=params)),
             },
             'artists': {
-                'all': lambda: self.__get('/artists'),
-                'cover': lambda idx: self.__get(f'/artists/{idx}'),
-                'libraries': lambda idx: self.__get(f'/artists/{idx}/libraries')
+                'all': APIEntry(lambda params: self.__get('/artists', params=params)),
+                'cover': APIEntry(lambda idx, params: self.__get(f'/artists/{idx}', params=params)),
+                'libraries': APIEntry(lambda idx, params: self.__get(f'/artists/{idx}/libraries', params=params))
             },
             'albums': {
-                'all': lambda: self.__get('/albums'),
-                'cover': lambda idx: self.__get(f'/albums/{idx}'),
-                'libraries': lambda idx: self.__get(f'/albums/{idx}/libraries')
+                'all': APIEntry(lambda params: self.__get('/albums', params=params)),
+                'cover': APIEntry(lambda idx, params: self.__get(f'/albums/{idx}', params=params)),
+                'libraries': APIEntry(lambda idx, params: self.__get(f'/albums/{idx}/libraries', params=params))
             },
             'tracks': {
-                'all': lambda: self.__get('/tracks'),
-                'cover': lambda idx: self.__get(f'/tracks/{idx}'),
-                'libraries': lambda idx: self.__get(f'/tracks/{idx}/libraries')
+                'all': APIEntry(lambda params: self.__get('/tracks', params=params)),
+                'cover': APIEntry(lambda idx, params: self.__get(f'/tracks/{idx}', params=params)),
+                'libraries': APIEntry(lambda idx, params: self.__get(f'/tracks/{idx}/libraries', params=params))
             },
-            'listen': lambda track_id: self.__request(f'/listen/{track_id}'),
+            'listen': APIEntry(lambda track_id, params: self.__request(f'/listen/{track_id}', params=params)),
             'licenses': {
-                'all': lambda: self.__get('/licenses'),
-                'cover': lambda code: self.__get(f'/licenses/{code}')
+                'all': APIEntry(lambda params: self.__get('/licenses', params=params)),
+                'cover': APIEntry(lambda code, params: self.__get(f'/licenses/{code}', params=params))
             },
             'libraries': {},
             'uploads': {},
             'channels': {},
             'subscriptions': {},
             'favourites': {
-                'all': lambda: self.__get('/favorites/tracks?scope=all'),
-                'me': lambda: self.__get('/favorites/tracks?scope=me'),
-                'add': lambda track_id: self.__post('/favorites/tracks', {'track': track_id}),
-                'remove': lambda track_id: self.__post('/favorites/tracks/remove', {'track': track_id}),
+                'all': APIEntry(lambda params: self.__get('/favorites/tracks?scope=all', params=params)),
+                'me': APIEntry(lambda params: self.__get('/favorites/tracks?scope=me', params=params)),
+                'add': APIEntry(lambda track_id, params: self.__post('/favorites/tracks', {'track': track_id}, params=params)),
+                'remove': APIEntry(lambda track_id, params: self.__post('/favorites/tracks/remove', {'track': track_id}, params=params)),
             },
             'playlists': {},
             'history': {
-                'all': lambda: self.__get('/history/listenings'),
-                'add': lambda track_id: self.__post('/history/listenings', {'track': track_id}),
+                'all': APIEntry(lambda params: self.__get('/history/listenings', params=params)),
+                'add': APIEntry(lambda track_id, params: self.__post('/history/listenings', {'track': track_id}, params=params)),
             },
         }
 
         for key, value in api.items():
-            setattr(self, key, munchify(value))
+            setattr(self, f'{key}', munchify(value))
 
-    def __request(self, url):
-        print(self.api_endpoint + url)
-        req = QNetworkRequest(QUrl(self.api_endpoint + url))
+    def __request(self, url, params = None):
+        qurl = QUrl(self.api_endpoint + url)
+        if type(params) == dict:
+            query = QUrlQuery()
+            for key, value in params.items():
+                query.addQueryItem(key, str(value))
+
+            qurl.setQuery(query)
+
+        req = QNetworkRequest(qurl)
         req.setRawHeader(QByteArray(b'Authorization'), QByteArray(f'Bearer {self.token}'.encode()))
         return req
 
@@ -104,12 +111,12 @@ class API:
         reply.finished.connect(parser.parse_reply())
         return parser.parsed
 
-    def __get(self, url):
-        req = self.__request(url)
+    def __get(self, url, params):
+        req = self.__request(url, params)
         return self.__parse(self.manager.get(req))
 
-    def __post(self, url, data):
-        req = self.__request(url)
+    def __post(self, url, data, params):
+        req = self.__request(url, params)
 
         query = QUrlQuery()
         for key, value in data:
@@ -122,3 +129,13 @@ class API:
         request = QNetworkRequest(QUrl(url))
         return CoverFetcher(self.manager.get(request), size).fetched
 
+
+class APIEntry:
+    def __init__(self, fn):
+        self.fn = fn
+
+    def __call__(self, *args, **kwargs):
+        return self.fn(*args, {})
+
+    def with_params(self, *args):
+        return self.fn(*args)

@@ -1,7 +1,10 @@
-from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedLayout
+from PySide2.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QStackedLayout, QScrollArea
 from PySide2.QtGui import QPalette
-from PySide2.QtCore import Qt, QSettings
+from PySide2.QtCore import Qt, QSettings, QRect
 from PySide2.QtMultimedia import QMediaPlayer
+
+# TODO: Use QUiLoader
+# from PySide2.QtUiTools import QUiLoader
 
 from waffwhale.widgets import Sidebar, PlayerControls, Browse
 from ..api import API
@@ -38,11 +41,16 @@ class MainWindow(QMainWindow):
 
         page_palette = QPalette()
         page_palette.setColor(QPalette.Background, Qt.white)
-        for page in self.pages.values():
-            page.ui.frame.setPalette(page_palette)
-            page.ui.frame.setAutoFillBackground(True)
 
-        self.pagesView.insertWidget(0, self.pages.get('exp_browse'))
+        for i, page in enumerate(self.pages.values()):
+            # page.setGeometry(QRect(0, 0, 10000, 10000))
+
+            scroll = ScrollArea()
+            scroll.setWidget(page)
+            scroll.setWidgetResizable(True)
+            scroll.setStyleSheet('border: none;background-color: #ffffff')
+
+            self.pagesView.insertWidget(i, scroll)
 
         self.mainLayout.addLayout(self.contentLayout)
         self.mainLayout.addWidget(self.controls)
@@ -51,3 +59,6 @@ class MainWindow(QMainWindow):
         self.centralWidget.setLayout(self.mainLayout)
         self.setCentralWidget(self.centralWidget)
 
+
+class ScrollArea(QScrollArea):
+    pass

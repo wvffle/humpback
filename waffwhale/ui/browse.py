@@ -18,6 +18,12 @@ class Ui_Browse(object):
         if not Browse.objectName():
             Browse.setObjectName(u"Browse")
         Browse.resize(842, 602)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Browse.sizePolicy().hasHeightForWidth())
+        Browse.setSizePolicy(sizePolicy)
+        Browse.setMinimumSize(QSize(0, 0))
         Browse.setAutoFillBackground(True)
         Browse.setStyleSheet(u"")
         self.verticalLayout_5 = QVBoxLayout(Browse)
@@ -26,6 +32,9 @@ class Ui_Browse(object):
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.frame = QFrame(Browse)
         self.frame.setObjectName(u"frame")
+        sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy)
+        self.frame.setMinimumSize(QSize(0, 0))
         self.frame.setMaximumSize(QSize(16777215, 16777215))
         self.frame.setFrameShape(QFrame.NoFrame)
         self.frame.setFrameShadow(QFrame.Raised)
@@ -35,6 +44,9 @@ class Ui_Browse(object):
         self.horizontalLayout_3.setContentsMargins(17, 17, 17, 17)
         self.frame_2 = QFrame(self.frame)
         self.frame_2.setObjectName(u"frame_2")
+        sizePolicy.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
+        self.frame_2.setSizePolicy(sizePolicy)
+        self.frame_2.setMinimumSize(QSize(0, 0))
         self.frame_2.setMaximumSize(QSize(1200, 16777215))
         self.frame_2.setFrameShape(QFrame.NoFrame)
         self.frame_2.setFrameShadow(QFrame.Raised)
@@ -42,11 +54,6 @@ class Ui_Browse(object):
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_4 = QGridLayout()
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
-
-        self.verticalLayout.addLayout(self.gridLayout_4)
-
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.asd = QVBoxLayout()
@@ -58,12 +65,18 @@ class Ui_Browse(object):
 
         self.scrollArea = QScrollArea(self.frame_2)
         self.scrollArea.setObjectName(u"scrollArea")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.MinimumExpanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
+        self.scrollArea.setSizePolicy(sizePolicy1)
+        self.scrollArea.setMinimumSize(QSize(0, 300))
         self.scrollArea.setStyleSheet(u"background-color: transparent;")
         self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 318, 230))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 226, 294))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -73,7 +86,7 @@ class Ui_Browse(object):
 
         self.verticalLayout_2.addLayout(self.history)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 225, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_4 = QSpacerItem(20, 289, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_4)
 
@@ -97,12 +110,15 @@ class Ui_Browse(object):
 
         self.scrollArea_2 = QScrollArea(self.frame_2)
         self.scrollArea_2.setObjectName(u"scrollArea_2")
+        sizePolicy1.setHeightForWidth(self.scrollArea_2.sizePolicy().hasHeightForWidth())
+        self.scrollArea_2.setSizePolicy(sizePolicy1)
+        self.scrollArea_2.setMinimumSize(QSize(0, 300))
         self.scrollArea_2.setStyleSheet(u"background-color: transparent;")
         self.scrollArea_2.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_3 = QWidget()
         self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
-        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 317, 230))
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 226, 294))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -131,11 +147,11 @@ class Ui_Browse(object):
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.label_7 = QLabel(self.frame_2)
         self.label_7.setObjectName(u"label_7")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.label_7.setSizePolicy(sizePolicy)
+        sizePolicy2 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
+        self.label_7.setSizePolicy(sizePolicy2)
 
         self.verticalLayout_8.addWidget(self.label_7)
 
@@ -162,6 +178,16 @@ class Ui_Browse(object):
         self.label_4.setObjectName(u"label_4")
 
         self.verticalLayout.addWidget(self.label_4)
+
+        self.verticalLayout_9 = QVBoxLayout()
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+
+        self.verticalLayout.addLayout(self.verticalLayout_9)
+
+        self.recently_added = QVBoxLayout()
+        self.recently_added.setObjectName(u"recently_added")
+
+        self.verticalLayout.addLayout(self.recently_added)
 
         self.verticalSpacer_8 = QSpacerItem(20, 259, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
