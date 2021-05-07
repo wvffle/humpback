@@ -1,0 +1,2 @@
+# qmldir
+singleton Style Style.qml

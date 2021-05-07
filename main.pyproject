@@ -1,0 +1,3 @@
+{
+    "files": ["component/ImageButton.qml","component/Controls.qml","component/RoundImage.qml","main.py","main.qml","component/StyledSlider.qml"]
+}
