@@ -1,5 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Window
+import Qt5Compat.GraphicalEffects
 import "component"
 
 Window {
@@ -8,18 +9,117 @@ Window {
     height: 480
     visible: true
     title: qsTr("waffwhale")
+    color: Style.darkGray
 
     visibility: "Maximized"
 
-    Controls {
-        y: root.height - height
-        width: root.width
-        id: controls
+    Row {
+        Item {
+            property int radius: Style.radius * 2
+            id: menu
+            width: 100 + radius
+            height: parent.height
+
+            Rectangle {
+                color: Style.accent
+                anchors.fill: parent
+
+                Rectangle {
+                    color: Style.darkGray
+                    height: parent.height
+                    width: radius * 2
+                    radius: menu.radius
+                    x: parent.width - radius
+                }
+            }
+
+            Column {
+                spacing: 64
+                width: parent.width - parent.radius
+                anchors.verticalCenter: parent.verticalCenter
+
+                ImageButton {
+                    file: '../assets/icons/grid.svg'
+                    width: 32
+                    height: 32
+
+                    inactiveColor: Style.text
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                ImageButton {
+                    file: '../assets/icons/disc.svg'
+                    width: 32
+                    height: 32
+
+                    inactiveColor: Style.text
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                ImageButton {
+                    file: '../assets/icons/user.svg'
+                    width: 32
+                    height: 32
+
+                    inactiveColor: Style.text
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                ImageButton {
+                    file: '../assets/icons/list.svg'
+                    width: 32
+                    height: 32
+
+                    inactiveColor: Style.text
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                ImageButton {
+                    file: '../assets/icons/rss.svg'
+                    width: 32
+                    height: 32
+
+                    inactiveColor: Style.text
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                ImageButton {
+                    file: '../assets/icons/heart.svg'
+                    width: 32
+                    height: 32
+
+                    inactiveColor: Style.text
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+        }
+
+        Column {
+            Row {
+                x: -menu.radius
+                height: root.height - controls.height
+                width: controls.width
+
+                Column {
+                    id: main
+                    width: parent.width - panel.width
+                    height: parent.height
+                }
+
+                Rectangle {
+                    id: panel
+                    width: 400
+                    height: parent.height
+                    color: Style.gray
+                }
+            }
+
+            Controls {
+                x: -menu.radius
+                id: controls
+                width: root.width - menu.width + menu.radius
+            }
+        }
     }
 
-    Rectangle {
-        height: root.height - controls.height
-        width: root.width
-
-    }
 }

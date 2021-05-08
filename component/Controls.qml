@@ -13,11 +13,10 @@ Item {
 
     height: 96
     property alias coverartRadius: coverart.radius
-    width: 1080
 
     Rectangle {
         id: bg
-        color: Style.darkGray
+        color: '#00000000'
         width: controls.width
         height: controls.height
         anchors.margins: 0
@@ -202,11 +201,14 @@ Item {
 
                         ImageButton {
                             id: playPause
-                            width: 32
+                            width: 42
                             height: width
                             anchors.verticalCenter: parent.verticalCenter
                             file: "../assets/icons/play.svg"
-                            inactiveColor: Style.accent
+                            inactiveColor: Style.text
+                            color: Style.accent
+                            radius: width
+                            padding: (width - prev.width) / 2
 
                             Connections {
                                 target: playPause
