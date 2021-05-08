@@ -111,6 +111,37 @@ Window {
                     width: 400
                     height: parent.height
                     color: Style.gray
+                    Column {
+                        anchors.fill: parent
+                        anchors.margins: 47
+                        spacing: 7
+
+                        RoundImage {
+                            source: '../assets/cover.jpg'
+                            width: parent.width
+                            height: width
+                            radius: 17
+                        }
+
+                        Text {
+                            text: qsTr('Saturday Night')
+                            font.pixelSize: 24
+                            color: Style.accent
+                        }
+
+                        Text {
+                            text: qsTr('DeA.D. Alive! (Live) ')
+                            font.pixelSize: 16
+                            color: Style.text
+                        }
+
+                        Text {
+                            text: qsTr('Misfits')
+                            font.pixelSize: 12
+                            color: Style.text
+                        }
+                    }
+
                 }
             }
 
