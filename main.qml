@@ -14,6 +14,7 @@ Window {
     visibility: "Maximized"
 
     Row {
+        id: row
         Item {
             property int radius: Style.radius * 2
             id: menu
@@ -95,10 +96,14 @@ Window {
         }
 
         Column {
+            property int margins: 77
+            width: root.width - menu.width - panel.width
+            height: root.height
+
             Row {
-                x: -menu.radius
-                height: root.height - controls.height
+                height: parent.height - controls.height
                 width: controls.width
+                x: parent.margins
 
                 Column {
                     id: main
@@ -106,50 +111,60 @@ Window {
                     height: parent.height
                 }
 
-                Rectangle {
-                    id: panel
-                    width: 400
-                    height: parent.height
-                    color: Style.gray
-                    Column {
-                        anchors.fill: parent
-                        anchors.margins: 47
-                        spacing: 7
-
-                        RoundImage {
-                            source: '../assets/cover.jpg'
-                            width: parent.width
-                            height: width
-                            radius: 17
-                        }
-
-                        Text {
-                            text: qsTr('Saturday Night')
-                            font.pixelSize: 24
-                            color: Style.accent
-                        }
-
-                        Text {
-                            text: qsTr('DeA.D. Alive! (Live) ')
-                            font.pixelSize: 16
-                            color: Style.text
-                        }
-
-                        Text {
-                            text: qsTr('Misfits')
-                            font.pixelSize: 12
-                            color: Style.text
-                        }
-                    }
-
-                }
             }
 
             Controls {
-                x: -menu.radius
                 id: controls
-                width: root.width - menu.width + menu.radius
+                width: parent.width - 2 * parent.margins
+                x: parent.margins
             }
+        }
+
+        Rectangle {
+            id: panel
+            width: 400
+            height: parent.height
+            color: Style.gray
+
+            Rectangle {
+                color: Style.darkGray
+                radius: menu.radius
+                width: radius * 2
+                height: parent.height
+                x: -radius
+            }
+
+            Column {
+                anchors.fill: parent
+                anchors.margins: 47
+                spacing: 7
+
+                RoundImage {
+                    source: '../assets/cover.jpg'
+                    width: parent.width
+                    height: width
+                    radius: 17
+                }
+
+                Text {
+                    text: qsTr('Saturday Night')
+                    font.pixelSize: 24
+                    color: Style.accent
+                }
+
+                Text {
+                    text: qsTr('DeA.D. Alive! (Live) ')
+                    font.pixelSize: 16
+                    color: Style.text
+                }
+
+                Text {
+                    text: qsTr('Misfits')
+                    font.pixelSize: 12
+                    color: Style.text
+                }
+            }
+
         }
     }
 

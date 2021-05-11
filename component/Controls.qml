@@ -11,8 +11,8 @@ Item {
     signal play()
     signal pause()
 
-    height: 96
-    property alias coverartRadius: coverart.radius
+    height: 128
+//    property alias coverartRadius: coverart.radius
 
     Rectangle {
         id: bg
@@ -30,63 +30,8 @@ Item {
             anchors.margins: spacing
             spacing: 9
 
-            RoundImage {
-                id: coverart
-                height: parent.height
-                radius: Style.radius
-                width: height
-                source: "../assets/cover.jpg"
-                asynchronous: true
-                antialiasing: true
-                fillMode: Image.PreserveAspectFit
-            }
-
-            Column {
-                id: info
-                width: 290 - coverart.width - parent.spacing
-                anchors.verticalCenter: parent.verticalCenter
-
-                Text {
-                    id: track
-                    width: 200
-                    height: 20
-                    color: Style.text
-                    text: controls.track
-                    elide: Text.ElideRight
-                    font.pixelSize: 14
-                    font.bold: false
-                    minimumPixelSize: font.pixelSize
-                    minimumPointSize: font.pixelSize
-                }
-
-                Row {
-                    y: 30
-                    Text {
-                        id: album
-                        color: Style.textGray
-                        text: controls.album
-                        font.pixelSize: 12
-                    }
-
-                    Text {
-                        id: div
-                        color: Style.textGray
-                        text: qsTr(" / ")
-                        font.pixelSize: 12
-                    }
-
-                    Text {
-                        id: artist
-                        color: Style.textGray
-                        text: controls.artist
-                        font.pixelSize: 12
-                    }
-
-                }
-            }
-
             Item {
-                width: parent.width - info.width - coverart.width - parent.spacing * 2
+                width: parent.width
                 height: parent.height
 
                 Item {
@@ -100,10 +45,10 @@ Item {
 
                         ImageButton {
                             id: markFavourite
-                            width: 32
+                            width: 36
                             color: Style.gray
                             height: width
-                            padding: 6
+                            padding: 8
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
                             active: false
@@ -120,10 +65,10 @@ Item {
 
                         ImageButton {
                             id: addToPlaylist
-                            width: 32
+                            width: markFavourite.width
                             color: Style.gray
                             height: width
-                            padding: 6
+                            padding: markFavourite.padding
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
                             active: false
@@ -140,10 +85,10 @@ Item {
 
                         ImageButton {
                             id: hideArtist
-                            width: 32
+                            width: markFavourite.width
                             color: Style.gray
                             height: width
-                            padding: 6
+                            padding: markFavourite.padding
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
                             active: false
