@@ -163,6 +163,128 @@ Window {
                     font.pixelSize: 12
                     color: Style.text
                 }
+
+                Text {
+                    topPadding: 32
+                    bottomPadding: 16
+                    text: qsTr('Listening Queue')
+                    font.pixelSize: 24
+                    font.weight: Font.Black
+                    color: Style.text
+                }
+
+                Column {
+                    width: parent.width
+                    spacing: 10
+
+                    Rectangle {
+                        width: parent.width
+                        height: 48
+                        color: '#00000000'
+                        radius: 8
+
+                        Row {
+                            anchors.fill: parent
+                            spacing: 4
+
+                            RoundImage {
+                                source: '../assets/cover.jpg'
+                                width: 48
+                                height: width
+                                radius: 8
+                            }
+
+                            Column {
+                                anchors.verticalCenter: parent.verticalCenter
+                                spacing: 4
+
+                                Text {
+                                    text: qsTr('Dig Up Her Bones')
+                                    font.pixelSize: 15
+                                    color: Style.text
+                                }
+
+                                Text {
+                                    text: qsTr('Misfits')
+                                    font.pixelSize: 13
+                                    color: Style.textLight
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: 48
+                        color: '#00000000'
+                        radius: 8
+
+                        Row {
+                            anchors.fill: parent
+                            spacing: 4
+
+                            RoundImage {
+                                source: '../assets/cover.jpg'
+                                width: 48
+                                height: width
+                                radius: 8
+                            }
+
+                            Column {
+                                anchors.verticalCenter: parent.verticalCenter
+                                spacing: 4
+
+                                Text {
+                                    text: qsTr('Helena')
+                                    font.pixelSize: 15
+                                    color: Style.text
+                                }
+
+                                Text {
+                                    text: qsTr('Misfits')
+                                    font.pixelSize: 13
+                                    color: Style.textLight
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: 48
+                        color: Style.lightGray
+                        radius: 8
+
+                        Row {
+                            anchors.fill: parent
+                            spacing: 4
+
+                            RoundImage {
+                                source: '../assets/cover.jpg'
+                                width: 48
+                                height: width
+                                radius: 8
+                            }
+
+                            Column {
+                                anchors.verticalCenter: parent.verticalCenter
+                                spacing: 4
+
+                                Text {
+                                    text: qsTr('Saturday Night')
+                                    font.pixelSize: 15
+                                    color: Style.accent
+                                }
+
+                                Text {
+                                    text: qsTr('Misfits')
+                                    font.pixelSize: 13
+                                    color: Style.text
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
         }

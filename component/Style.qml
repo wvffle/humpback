@@ -11,6 +11,7 @@ QtObject {
 
     property color text:        '#ffffff'
     property color textGray:    '#42404e'
+    property color textLight:   '#4c4a58'
 
     property int radius:        8
 }
