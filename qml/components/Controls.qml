@@ -52,7 +52,7 @@ Item {
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
                             active: true
-                            file: "../assets/icons/heart.svg"
+                            file: "../../assets/icons/heart.svg"
 
                             Connections {
                                 target: markFavourite
@@ -72,7 +72,7 @@ Item {
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
                             active: false
-                            file: "../assets/icons/list.svg"
+                            file: "../../assets/icons/list.svg"
 
                             Connections {
                                 target: addToPlaylist
@@ -92,7 +92,7 @@ Item {
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
                             active: false
-                            file: "../assets/icons/eye-off.svg"
+                            file: "../../assets/icons/eye-off.svg"
 
                             Connections {
                                 target: hideArtist
@@ -114,7 +114,7 @@ Item {
                             width: 16
                             height: width
                             anchors.verticalCenter: parent.verticalCenter
-                            file: "../assets/icons/repeat.svg"
+                            file: "../../assets/icons/repeat.svg"
                             inactiveColor: Style.textGray
                             activeColor: Style.text
 
@@ -132,7 +132,7 @@ Item {
                             width: 24
                             height: width
                             anchors.verticalCenter: parent.verticalCenter
-                            file: "../assets/icons/skip-back.svg"
+                            file: "../../assets/icons/skip-back.svg"
                             inactiveColor: Style.accent
 
                             Connections {
@@ -149,7 +149,7 @@ Item {
                             width: 42
                             height: width
                             anchors.verticalCenter: parent.verticalCenter
-                            file: "../assets/icons/play.svg"
+                            file: "../../assets/icons/play.svg"
                             inactiveColor: Style.text
                             color: Style.accent
                             radius: width
@@ -169,7 +169,7 @@ Item {
                             width: 24
                             height: width
                             anchors.verticalCenter: parent.verticalCenter
-                            file: "../assets/icons/skip-forward.svg"
+                            file: "../../assets/icons/skip-forward.svg"
                             inactiveColor: Style.accent
 
                             Connections {
@@ -186,7 +186,7 @@ Item {
                             width: 16
                             height: width
                             anchors.verticalCenter: parent.verticalCenter
-                            file: "../assets/icons/shuffle.svg"
+                            file: "../../assets/icons/shuffle.svg"
                             inactiveColor: Style.textGray
                             activeColor: Style.text
 
@@ -207,7 +207,7 @@ Item {
                         spacing: 9
 
                         ImageButton {
-                            file: "../assets/icons/volume-1.svg"
+                            file: "../../assets/icons/volume-1.svg"
                             width: 24
                             height: width
                         }
@@ -221,7 +221,7 @@ Item {
                         }
 
                         ImageButton {
-                            file: "../assets/icons/volume-2.svg"
+                            file: "../../assets/icons/volume-2.svg"
                             width: 24
                             height: width
                         }

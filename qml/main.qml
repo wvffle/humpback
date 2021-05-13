@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
-import "component"
+import "components"
 
 Window {
     id: root
@@ -14,7 +14,6 @@ Window {
     visibility: "Maximized"
 
     Row {
-        id: row
         Item {
             property int radius: Style.radius * 2
             id: menu
@@ -40,7 +39,7 @@ Window {
                 anchors.verticalCenter: parent.verticalCenter
 
                 ImageButton {
-                    file: '../assets/icons/grid.svg'
+                    file: '../../assets/icons/grid.svg'
                     width: 32
                     height: 32
 
@@ -52,7 +51,7 @@ Window {
                 }
 
                 ImageButton {
-                    file: '../assets/icons/disc.svg'
+                    file: '../../assets/icons/disc.svg'
                     width: 32
                     height: 32
 
@@ -64,7 +63,7 @@ Window {
                 }
 
                 ImageButton {
-                    file: '../assets/icons/user.svg'
+                    file: '../../assets/icons/user.svg'
                     width: 32
                     height: 32
 
@@ -76,7 +75,7 @@ Window {
                 }
 
                 ImageButton {
-                    file: '../assets/icons/list.svg'
+                    file: '../../assets/icons/list.svg'
                     width: 32
                     height: 32
                     text: 'Playlists'
@@ -88,7 +87,7 @@ Window {
                 }
 
                 ImageButton {
-                    file: '../assets/icons/rss.svg'
+                    file: '../../assets/icons/rss.svg'
                     width: 32
                     height: 32
                     text: 'Radios'
@@ -100,7 +99,7 @@ Window {
                 }
 
                 ImageButton {
-                    file: '../assets/icons/heart.svg'
+                    file: '../../assets/icons/heart.svg'
                     width: 32
                     height: 32
 
@@ -158,7 +157,7 @@ Window {
                 spacing: 7
 
                 RoundImage {
-                    source: '../assets/cover.jpg'
+                    source: '../../assets/cover.jpg'
                     width: parent.width
                     height: width
                     radius: 17
@@ -206,7 +205,7 @@ Window {
                             spacing: 4
 
                             RoundImage {
-                                source: '../assets/cover.jpg'
+                                source: '../../assets/cover.jpg'
                                 width: 48
                                 height: width
                                 radius: 8
@@ -242,7 +241,7 @@ Window {
                             spacing: 4
 
                             RoundImage {
-                                source: '../assets/cover.jpg'
+                                source: '../../assets/cover.jpg'
                                 width: 48
                                 height: width
                                 radius: 8
@@ -278,7 +277,7 @@ Window {
                             spacing: 4
 
                             RoundImage {
-                                source: '../assets/cover.jpg'
+                                source: '../../assets/cover.jpg'
                                 width: 48
                                 height: width
                                 radius: 8
