@@ -1,5 +1,6 @@
 import sys
 import os
+
 import inotify.adapters
 
 from PySide6.QtCore import QThread, QObject, Signal, Slot
@@ -12,23 +13,36 @@ main = os.path.join(os.path.dirname(__file__), 'qml', "main.qml")
 class Master(QObject):
     command = Signal()
 
-    def __init__(self):
-        QObject.__init__(self)
-
     @Slot()
     def reload(self):
         print("Loading UI")
 
-        for window in engine.rootObjects():
-            window.destroy()
+        windows = engine.rootObjects()
+        if len(windows) > 0:
+            pos = windows[-1].position()
+            width = windows[-1].width()
+            height = windows[-1].height()
+            state = windows[-1].windowState()
 
-        engine.clearComponentCache()
-        engine.load(main)
+            for window in windows:
+                window.close()
+                window.destroy()
 
-        if not engine.rootObjects():
-            sys.exit(-1)
+            engine.clearComponentCache()
+            engine.load(main)
 
-        # TODO: Move new window to old window position
+            if not engine.rootObjects():
+                sys.exit(-1)
+
+            # NOTE: Every load creates new rootObject
+            window = engine.rootObjects()[-1]
+            window.setPosition(pos); window.setWindowState(state)
+            window.resize(width, height)
+        else:
+            engine.load(main)
+
+            if not engine.rootObjects():
+                sys.exit(-1)
 
 
 class Worker(QObject):
