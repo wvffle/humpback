@@ -1,3 +1,4 @@
+import signal
 import sys
 import os
 
@@ -47,20 +48,29 @@ class Master(QObject):
 
 class Worker(QObject):
     requestReload = Signal()
+    isRunning = True
 
-    def __init__(self):
-        QObject.__init__(self)
+    @Slot()
+    def stop(self):
+        self.isRunning = False
 
     @Slot()
     def run(self):
         self.requestReload.emit()
         i = inotify.adapters.InotifyTree('./qml')
 
-        for event in i.event_gen(yield_nones=False):
-            (_, type_names, path, filename) = event
+        while self.isRunning:
+            events = i.event_gen(yield_nones=False, timeout_s=1)
 
-            print(filename, type_names)
-            if filename[-3:] == 'qml' and 'IN_MODIFY' in type_names:
+            reload = False
+            for event in list(events):
+                (_, type_names, path, filename) = event
+
+                if filename[-3:] == 'qml' and 'IN_MODIFY' in type_names:
+                    reload = True
+                    break
+
+            if reload:
                 self.requestReload.emit()
 
 
@@ -78,6 +88,10 @@ if __name__ == "__main__":
     worker.requestReload.connect(master.reload)
     master.command.emit()
 
-    # TODO: Stop worker on application stop
-
-    sys.exit(app.exec_())
+    # Stop application gracefully:
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+    status = app.exec_()
+    worker.stop()
+    workerThread.quit()
+    workerThread.wait()
+    sys.exit(status)
