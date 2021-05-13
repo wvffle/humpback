@@ -11,6 +11,12 @@ Item {
     property int radius: 0
     property int padding: 0
 
+    property string text: ""
+    property int textSize: 12
+    property color textColor: inactiveColor
+    property int textPadding: padding
+    property bool textBold: false
+
     signal clicked()
 
     Rectangle {
@@ -25,23 +31,27 @@ Item {
             }
         }
 
-        Image {
-            id: image
+        Column {
             anchors.fill: parent
             anchors.margins: button.padding
-            source: button.file
-            sourceSize.height: button.height
-            sourceSize.width: button.width
-            antialiasing: true
-            visible: false
-        }
 
-        ColorOverlay {
-            source: image
-            anchors.fill: image
-            color: active ? activeColor : inactiveColor
-            antialiasing: true
-            visible: true
+            ColoredImage {
+                file: button.file
+                color: active ? activeColor : inactiveColor
+                width: parent.width
+                height: width
+            }
+
+            Text {
+                width: parent.width
+                text: qsTr(button.text)
+                font.pixelSize: button.textSize
+                color: active ? activeColor : inactiveColor
+                visible: button.text != ""
+                horizontalAlignment: Text.AlignHCenter
+                topPadding: button.textPadding
+                font.bold: button.textBold
+            }
         }
     }
 }

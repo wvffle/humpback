@@ -46,6 +46,9 @@ Window {
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
+                    text: 'Browse'
+                    textSize: 14
+                    textPadding: 8
                 }
 
                 ImageButton {
@@ -55,6 +58,9 @@ Window {
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
+                    text: 'Albums'
+                    textSize: 14
+                    textPadding: 8
                 }
 
                 ImageButton {
@@ -64,12 +70,18 @@ Window {
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
+                    text: 'Artists'
+                    textSize: 14
+                    textPadding: 8
                 }
 
                 ImageButton {
                     file: '../assets/icons/list.svg'
                     width: 32
                     height: 32
+                    text: 'Playlists'
+                    textSize: 14
+                    textPadding: 8
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -79,6 +91,9 @@ Window {
                     file: '../assets/icons/rss.svg'
                     width: 32
                     height: 32
+                    text: 'Radios'
+                    textSize: 14
+                    textPadding: 8
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -91,6 +106,9 @@ Window {
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
+                    text: 'Favourites'
+                    textSize: 14
+                    textPadding: 8
                 }
             }
         }

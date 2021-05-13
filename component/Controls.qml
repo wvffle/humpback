@@ -51,7 +51,7 @@ Item {
                             padding: 8
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
-                            active: false
+                            active: true
                             file: "../assets/icons/heart.svg"
 
                             Connections {
