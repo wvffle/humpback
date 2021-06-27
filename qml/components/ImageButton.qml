@@ -11,11 +11,16 @@ Item {
     property int radius: 0
     property int padding: 0
 
+    property int imageSize: 32
+
     property string text: ""
     property int textSize: 12
     property color textColor: inactiveColor
     property int textPadding: padding
     property bool textBold: false
+
+    height: image.height + padding * 2 + (text != "" ? textPadding + textSize : 0)
+    width: height
 
     signal clicked()
 
@@ -32,14 +37,20 @@ Item {
         }
 
         Column {
+            id: column
             anchors.fill: parent
             anchors.margins: button.padding
 
             ColoredImage {
-                file: button.file
+                id: image
                 color: active ? activeColor : inactiveColor
-                width: parent.width
+
+                width: button.imageSize
                 height: width
+
+                anchors.left: parent.left
+                file: button.file
+                anchors.leftMargin: button.width / 2 - width / 2 - button.padding
             }
 
             Text {
@@ -58,6 +69,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}
+    D{i:0;formeditorZoom:2;height:64;width:64}
 }
 ##^##*/

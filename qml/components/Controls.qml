@@ -45,9 +45,8 @@ Item {
 
                         ImageButton {
                             id: markFavourite
-                            width: 36
+                            imageSize: 20
                             color: Style.gray
-                            height: width
                             padding: 8
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
@@ -65,9 +64,8 @@ Item {
 
                         ImageButton {
                             id: addToPlaylist
-                            width: markFavourite.width
+                            imageSize: markFavourite.imageSize
                             color: Style.gray
-                            height: width
                             padding: markFavourite.padding
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
@@ -85,9 +83,8 @@ Item {
 
                         ImageButton {
                             id: hideArtist
-                            width: markFavourite.width
+                            imageSize: markFavourite.imageSize
                             color: Style.gray
-                            height: width
                             padding: markFavourite.padding
                             radius: Style.radius
                             anchors.verticalCenter: parent.verticalCenter
@@ -111,8 +108,7 @@ Item {
 
                         ImageButton {
                             id: repeat
-                            width: 16
-                            height: width
+                            imageSize: 16
                             anchors.verticalCenter: parent.verticalCenter
                             file: "../../assets/icons/repeat.svg"
                             inactiveColor: Style.textGray
@@ -129,8 +125,7 @@ Item {
 
                         ImageButton {
                             id: prev
-                            width: 24
-                            height: width
+                            imageSize: 24
                             anchors.verticalCenter: parent.verticalCenter
                             file: "../../assets/icons/skip-back.svg"
                             inactiveColor: Style.accent
@@ -146,14 +141,13 @@ Item {
 
                         ImageButton {
                             id: playPause
-                            width: 42
-                            height: width
+                            imageSize: 24
+                            padding: 9
                             anchors.verticalCenter: parent.verticalCenter
                             file: "../../assets/icons/play.svg"
                             inactiveColor: Style.text
                             color: Style.accent
                             radius: width
-                            padding: (width - prev.width) / 2
 
                             Connections {
                                 target: playPause
@@ -166,8 +160,7 @@ Item {
 
                         ImageButton {
                             id: next
-                            width: 24
-                            height: width
+                            imageSize: 24
                             anchors.verticalCenter: parent.verticalCenter
                             file: "../../assets/icons/skip-forward.svg"
                             inactiveColor: Style.accent
@@ -183,8 +176,7 @@ Item {
 
                         ImageButton {
                             id: shuffle
-                            width: 16
-                            height: width
+                            imageSize: 16
                             anchors.verticalCenter: parent.verticalCenter
                             file: "../../assets/icons/shuffle.svg"
                             inactiveColor: Style.textGray
@@ -208,8 +200,7 @@ Item {
 
                         ImageButton {
                             file: "../../assets/icons/volume-1.svg"
-                            width: 24
-                            height: width
+                            imageSize: 24
                         }
 
                         StyledSlider {
@@ -222,8 +213,7 @@ Item {
 
                         ImageButton {
                             file: "../../assets/icons/volume-2.svg"
-                            width: 24
-                            height: width
+                            imageSize: 24
                         }
                     }
                 }

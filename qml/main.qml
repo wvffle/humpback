@@ -34,14 +34,16 @@ Window {
             }
 
             Column {
-                spacing: 64
+                spacing: 16
                 width: parent.width - parent.radius
                 anchors.verticalCenter: parent.verticalCenter
 
                 ImageButton {
                     file: '../../assets/icons/grid.svg'
-                    width: 32
-                    height: 32
+                    imageSize: 32
+                    padding: 16
+                    color: '#22000000'
+                    radius: 8
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -52,8 +54,10 @@ Window {
 
                 ImageButton {
                     file: '../../assets/icons/disc.svg'
-                    width: 32
-                    height: 32
+                    imageSize: 32
+                    padding: 16
+                    color: '#00000000'
+                    radius: 8
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -64,8 +68,10 @@ Window {
 
                 ImageButton {
                     file: '../../assets/icons/user.svg'
-                    width: 32
-                    height: 32
+                    imageSize: 32
+                    padding: 16
+                    color: '#00000000'
+                    radius: 8
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -76,35 +82,44 @@ Window {
 
                 ImageButton {
                     file: '../../assets/icons/list.svg'
-                    width: 32
-                    height: 32
-                    text: 'Playlists'
-                    textSize: 14
-                    textPadding: 8
+                    imageSize: 32
+                    padding: 16
+                    color: '#00000000'
+                    radius: 8
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
+
+                    text: 'Playlists'
+                    textSize: 14
+                    textPadding: 8
                 }
 
                 ImageButton {
                     file: '../../assets/icons/rss.svg'
-                    width: 32
-                    height: 32
-                    text: 'Radios'
-                    textSize: 14
-                    textPadding: 8
+                    imageSize: 32
+                    padding: 16
+                    color: '#00000000'
+                    radius: 8
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
+
+                    text: 'Radios'
+                    textSize: 14
+                    textPadding: 8
                 }
 
                 ImageButton {
                     file: '../../assets/icons/heart.svg'
-                    width: 32
-                    height: 32
+                    imageSize: 32
+                    padding: 16
+                    color: '#00000000'
+                    radius: 8
 
                     inactiveColor: Style.text
                     anchors.horizontalCenter: parent.horizontalCenter
+
                     text: 'Favourites'
                     textSize: 14
                     textPadding: 8
@@ -308,3 +323,9 @@ Window {
     }
 
 }
+
+/*##^##
+Designer {
+    D{i:0;height:1080;width:1920}
+}
+##^##*/
