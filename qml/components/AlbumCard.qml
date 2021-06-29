@@ -21,15 +21,30 @@ Item {
         width: parent.width
         topPadding: 10
 
-        RoundImage {
-            id: image
+        Rectangle {
             x: parent.topPadding
             width: root.width - parent.topPadding * 2
             height: width
-            radius: Style.radius
+            radius: image.radius
+            color: "#00000000"
 
-            source: "../../assets/cover.jpg"
+            layer.enabled: true
+            layer.effect: DropShadow {
+                radius: 8.0
+                color: Style.darkGray
+                transparentBorder: true
+            }
+
+            RoundImage {
+                id: image
+                x: parent.topPadding
+                anchors.fill: parent
+                radius: Style.radius
+
+                source: "../../assets/cover.jpg"
+            }
         }
+
 
         Text {
             id: album
@@ -52,17 +67,6 @@ Item {
     }
 
 
-    //    Rectangle {
-    //        id: mask
-    //        anchors.fill: parent
-    //        radius: root.radius
-    //        visible: false
-    //    }
 
-    //    OpacityMask {
-    //        anchors.fill: parent
-    //        source: root
-    //        maskSource: mask
-    //        antialiasing: root.antialiasing
-    //    }
+
 }
