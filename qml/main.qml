@@ -139,8 +139,36 @@ Window {
 
                 Column {
                     id: main
-                    width: parent.width - panel.width
-                    height: parent.height
+                    anchors.fill: parent
+                    leftPadding: 0
+                    rightPadding: 0
+                    padding: 32
+
+                    Text {
+                        color: Style.text
+                        text: qsTr("Recently added")
+                        font.pixelSize: 32
+                        font.bold: true
+                    }
+
+                    Grid {
+                        id: recentlyAdded
+                        width: parent.width
+                        leftPadding: 0
+                        rightPadding: 0
+                        padding: 16
+                        spacing: 16
+                        columns: 5
+
+                        Repeater {
+                            model: 10
+
+                            AlbumCard {
+                                // TODO: Fix width to be contained in recentlyAdded
+                                width: (recentlyAdded.width - recentlyAdded.spacing * 2) / recentlyAdded.columns
+                            }
+                        }
+                    }
                 }
 
             }
