@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Window
+import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 import "components"
 
@@ -132,10 +133,13 @@ Window {
             width: root.width - menu.width - panel.width
             height: root.height
 
-            Row {
+            ScrollView {
                 height: parent.height - controls.height
                 width: controls.width
                 x: parent.margins
+                contentWidth: width
+                clip : true
+//                __wheelAreaScrollSpeed: 50
 
                 Column {
                     id: main
@@ -143,6 +147,50 @@ Window {
                     leftPadding: 0
                     rightPadding: 0
                     padding: 32
+
+                    Row {
+                        width: parent.width
+                        spacing: 32
+                        bottomPadding: 32
+
+                        Column {
+                            width: parent.width / 3
+                            spacing: 8
+
+                            Text {
+                                color: Style.text
+                                text: qsTr("Recently listened")
+                                font.pixelSize: 32
+                                font.bold: true
+                            }
+
+                            Repeater {
+                                model: 5
+                                HistoryEntry {
+                                    width: parent.width
+                                }
+                            }
+                        }
+
+                        Column {
+                            width: parent.width / 3
+                            spacing: 8
+
+                            Text {
+                                color: Style.text
+                                text: qsTr("Recently favorited")
+                                font.pixelSize: 32
+                                font.bold: true
+                            }
+
+                            Repeater {
+                                model: 5
+                                HistoryEntry {
+                                    width: parent.width
+                                }
+                            }
+                        }
+                    }
 
                     Text {
                         color: Style.text
@@ -165,12 +213,11 @@ Window {
 
                             AlbumCard {
                                 // TODO: Fix width to be contained in recentlyAdded
-                                width: (recentlyAdded.width - recentlyAdded.spacing * 2) / recentlyAdded.columns
+                                width: (recentlyAdded.width - recentlyAdded.spacing * (recentlyAdded.columns - 1)) / recentlyAdded.columns
                             }
                         }
                     }
                 }
-
             }
 
             Controls {
@@ -354,6 +401,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;height:1080;width:1920}
+    D{i:0;formeditorZoom:0.66;height:1080;width:1920}
 }
 ##^##*/

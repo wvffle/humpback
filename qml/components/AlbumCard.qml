@@ -21,12 +21,14 @@ Item {
         width: parent.width
         topPadding: 10
 
-        Rectangle {
+        RoundImage {
+            id: image
             x: parent.topPadding
             width: root.width - parent.topPadding * 2
             height: width
-            radius: image.radius
-            color: "#00000000"
+            radius: Style.radius
+
+            source: "../../assets/cover.jpg"
 
             layer.enabled: true
             layer.effect: DropShadow {
@@ -34,17 +36,7 @@ Item {
                 color: Style.darkGray
                 transparentBorder: true
             }
-
-            RoundImage {
-                id: image
-                x: parent.topPadding
-                anchors.fill: parent
-                radius: Style.radius
-
-                source: "../../assets/cover.jpg"
-            }
         }
-
 
         Text {
             id: album
@@ -59,7 +51,7 @@ Item {
         Text {
             id: artist
             text: qsTr("Misfits")
-            font.pixelSize: 16
+            font.pixelSize: 12
             color: Style.text
             topPadding: 4
             padding: parent.topPadding

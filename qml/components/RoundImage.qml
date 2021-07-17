@@ -1,8 +1,10 @@
 import QtQuick
 import Qt5Compat.GraphicalEffects
-Item {
+Rectangle {
     id: root
-    property int radius: 0
+    color: "#00000000"
+
+    radius: 0
     property url source: ""
     property bool asynchronous: img.asynchronous
     property int fillMode: img.fillMode
